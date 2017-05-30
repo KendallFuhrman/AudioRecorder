@@ -7,12 +7,72 @@
 //
 
 import UIKit
+import AVFoundation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDelegate {
+    
+    var audioPlayer: AVAudioPlayer?
+    var audioRecorder: AVAudioRecorder?
+    
+    @IBOutlet weak var recordB: UIButton!
+    @IBOutlet weak var playB: UIButton!
+    
 
+    
+    @IBAction func recordAudio(_ sender: UIButton) {
+        if audioRecorder?.isRecording == false {
+        audioRecorder?.record()
+        print("recording")
+    }
+    }
+    
+    @IBAction func playAudio(_ sender: UIButton) {
+        audioRecorder?.stop()
+        do {
+                try audioPlayer = AVAudioPlayer(contentsOf:
+                    (audioRecorder?.url)!)
+                audioPlayer!.delegate = self
+                audioPlayer!.prepareToPlay()
+                audioPlayer!.play()
+                print("playing")
+            } catch let error as NSError {
+                print("audioPlayer error: \(error.localizedDescription)")
+            }
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        let fileMgr = FileManager.default
+        
+        let dirPaths = fileMgr.urls(for: .documentDirectory,
+                                    in: .userDomainMask)
+        
+        let soundFileURL = dirPaths[0].appendingPathComponent("sound.caf")
+        
+        let recordSettings =
+            [AVEncoderAudioQualityKey: AVAudioQuality.min.rawValue,
+             AVEncoderBitRateKey: 16,
+             AVNumberOfChannelsKey: 2,
+             AVSampleRateKey: 44100.0] as [String : Any]
+        
+        let audioSession = AVAudioSession.sharedInstance()
+        
+        do {
+            try audioSession.setCategory(
+                AVAudioSessionCategoryPlayAndRecord)
+        } catch let error as NSError {
+            print("audioSession error: \(error.localizedDescription)")
+        }
+        
+        do {
+            try audioRecorder = AVAudioRecorder(url: soundFileURL,
+                                                settings: recordSettings as [String : AnyObject])
+            audioRecorder?.prepareToRecord()
+        } catch let error as NSError {
+            print("audioSession error: \(error.localizedDescription)")
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

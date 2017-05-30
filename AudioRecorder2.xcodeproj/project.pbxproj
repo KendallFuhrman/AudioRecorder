@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F0083B91EDDB51C006C4353 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F0083B81EDDB51C006C4353 /* AVFoundation.framework */; };
 		6F057B1B1EDDB3BB00C1E977 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F057B1A1EDDB3BB00C1E977 /* AppDelegate.swift */; };
 		6F057B1D1EDDB3BB00C1E977 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F057B1C1EDDB3BB00C1E977 /* ViewController.swift */; };
 		6F057B201EDDB3BB00C1E977 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F057B1E1EDDB3BB00C1E977 /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F0083B81EDDB51C006C4353 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6F057B171EDDB3BB00C1E977 /* AudioRecorder2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioRecorder2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F057B1A1EDDB3BB00C1E977 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6F057B1C1EDDB3BB00C1E977 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,17 +31,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F0083B91EDDB51C006C4353 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F0083B71EDDB51C006C4353 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6F0083B81EDDB51C006C4353 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6F057B0E1EDDB3BB00C1E977 = {
 			isa = PBXGroup;
 			children = (
 				6F057B191EDDB3BB00C1E977 /* AudioRecorder2 */,
 				6F057B181EDDB3BB00C1E977 /* Products */,
+				6F0083B71EDDB51C006C4353 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,6 +108,7 @@
 				TargetAttributes = {
 					6F057B161EDDB3BB00C1E977 = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 866JLEMQEN;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -262,6 +275,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 866JLEMQEN;
 				INFOPLIST_FILE = AudioRecorder2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kendall.fuhrman.com.AudioRecorder2;
@@ -274,6 +288,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 866JLEMQEN;
 				INFOPLIST_FILE = AudioRecorder2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kendall.fuhrman.com.AudioRecorder2;
@@ -301,6 +316,7 @@
 				6F057B2B1EDDB3BC00C1E977 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
