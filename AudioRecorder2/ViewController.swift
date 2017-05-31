@@ -13,6 +13,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
     
     var audioPlayer: AVAudioPlayer?
     var audioRecorder: AVAudioRecorder?
+    var stringToPass: String = ""
     
     @IBOutlet weak var recordB: UIButton!
     @IBOutlet weak var playB: UIButton!
@@ -28,16 +29,19 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
     
     @IBAction func playAudio(_ sender: UIButton) {
         audioRecorder?.stop()
-        do {
-                try audioPlayer = AVAudioPlayer(contentsOf:
-                    (audioRecorder?.url)!)
-                audioPlayer!.delegate = self
-                audioPlayer!.prepareToPlay()
-                audioPlayer!.play()
-                print("playing")
-            } catch let error as NSError {
-                print("audioPlayer error: \(error.localizedDescription)")
-            }
+        print("hi")
+//        performSegue(withIdentifier: "stopRecording" , sender: sender)
+        
+//        do {
+//                try audioPlayer = AVAudioPlayer(contentsOf:
+//                    (audioRecorder?.url)!)
+//                audioPlayer!.delegate = self
+//                audioPlayer!.prepareToPlay()
+//                audioPlayer!.play()
+//                print("playing")
+//            } catch let error as NSError {
+//                print("audioPlayer error: \(error.localizedDescription)")
+//            }
 
     }
     
@@ -49,6 +53,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
                                     in: .userDomainMask)
         
         let soundFileURL = dirPaths[0].appendingPathComponent("sound.caf")
+        stringToPass = soundFileURL.absoluteString
         
         let recordSettings =
             [AVEncoderAudioQualityKey: AVAudioQuality.min.rawValue,
@@ -79,7 +84,15 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "stopRecording" {
+            let pitchVC:PitchViewController = segue.destination as! PitchViewController
+            
+            pitchVC.receivedAudio = audioRecorder?.url
 
+        }
+    }
 
 }
 
