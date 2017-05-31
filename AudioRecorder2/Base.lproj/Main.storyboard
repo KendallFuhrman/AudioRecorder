@@ -121,10 +121,16 @@
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0OL-7e-zzj" userLabel="Alien">
                                                 <rect key="frame" x="0.0" y="0.0" width="96" height="113"/>
                                                 <state key="normal" image="Alien"/>
+                                                <connections>
+                                                    <action selector="alienPlay:" destination="XEj-W2-q0g" eventType="touchUpInside" id="Bbd-Yn-rBg"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jvP-dC-J1y" userLabel="Robot">
                                                 <rect key="frame" x="146" y="0.0" width="120" height="113"/>
                                                 <state key="normal" image="Robot"/>
+                                                <connections>
+                                                    <action selector="robotPlay:" destination="XEj-W2-q0g" eventType="touchUpInside" id="Pev-oP-oYM"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <variation key="heightClass=compact" axis="vertical"/>
@@ -132,6 +138,14 @@
                                 </subviews>
                                 <variation key="heightClass=compact" axis="horizontal"/>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c86-9c-Ikz">
+                                <rect key="frame" x="128" y="572" width="118" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="stopTiny"/>
+                                <connections>
+                                    <action selector="stopAudio:" destination="XEj-W2-q0g" eventType="touchUpInside" id="nTE-NT-Frg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -159,5 +173,6 @@
         <image name="Squirrel" width="108" height="107"/>
         <image name="Stop2" width="304" height="304"/>
         <image name="bear" width="108" height="83"/>
+        <image name="stopTiny" width="64" height="64"/>
     </resources>
 </document>
