@@ -11,14 +11,15 @@ import AVFoundation
 
 class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDelegate {
     
-    var audioPlayer: AVAudioPlayer?
-    var audioRecorder: AVAudioRecorder?
+    var audioPlayer: AVAudioPlayer!
+    var audioRecorder: AVAudioRecorder!
     var stringToPass: String = ""
     
     @IBOutlet weak var recordB: UIButton!
     @IBOutlet weak var playB: UIButton!
     
 
+   //Set Record and Play buttons
     
     @IBAction func recordAudio(_ sender: UIButton) {
         if audioRecorder?.isRecording == false {
@@ -30,23 +31,13 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
     @IBAction func playAudio(_ sender: UIButton) {
         audioRecorder?.stop()
         print("hi")
-//        performSegue(withIdentifier: "stopRecording" , sender: sender)
-        
-//        do {
-//                try audioPlayer = AVAudioPlayer(contentsOf:
-//                    (audioRecorder?.url)!)
-//                audioPlayer!.delegate = self
-//                audioPlayer!.prepareToPlay()
-//                audioPlayer!.play()
-//                print("playing")
-//            } catch let error as NSError {
-//                print("audioPlayer error: \(error.localizedDescription)")
-//            }
 
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+    // borrowed from a tutorial
         let fileMgr = FileManager.default
         
         let dirPaths = fileMgr.urls(for: .documentDirectory,
@@ -60,8 +51,14 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
              AVEncoderBitRateKey: 16,
              AVNumberOfChannelsKey: 2,
              AVSampleRateKey: 44100.0] as [String : Any]
-        
+    
+    // LOOK UP WHAT AUDIOSESSION MEANS and SHAREDINSTANCE
         let audioSession = AVAudioSession.sharedInstance()
+    // Do block is a block of code, and anything that you try in their might throw an error.
+    // audio session might throw an error if something is empty. LOOK UP.
+    // in a real app you would send an error message to the user so they know what is happneing.
+    // LOOK UP how to send an error message
+    //Don't need a ? if you used a bang before
         
         do {
             try audioSession.setCategory(
@@ -69,11 +66,11 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
         } catch let error as NSError {
             print("audioSession error: \(error.localizedDescription)")
         }
-        
+   
         do {
             try audioRecorder = AVAudioRecorder(url: soundFileURL,
                                                 settings: recordSettings as [String : AnyObject])
-            audioRecorder?.prepareToRecord()
+            audioRecorder.prepareToRecord()
         } catch let error as NSError {
             print("audioSession error: \(error.localizedDescription)")
         }

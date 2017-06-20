@@ -14,40 +14,45 @@ class PitchViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecor
     var audioPlayer: AVAudioPlayer!
     var engine: AVAudioEngine!
     var file: AVAudioFile!
+    
+
+    @IBAction func back(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    func rateSetup() {
+    do {
+        try audioPlayer = AVAudioPlayer(contentsOf: (receivedAudio)!)
+            audioPlayer!.delegate = self
+            audioPlayer!.prepareToPlay()
+        } catch
+            let error as NSError {
+            print("audioPlayer error: \(error.localizedDescription)")
+        }
+    }
+
+
    
     @IBAction func slowPlay(_ sender: UIButton) {
-        do {
-            try audioPlayer = AVAudioPlayer(contentsOf: (receivedAudio)!)
-                audioPlayer!.delegate = self
-                audioPlayer!.prepareToPlay()
+        rateSetup()
+
                 audioPlayer!.enableRate = true
                 audioPlayer!.rate = 0.5
                 audioPlayer!.play()
                 print("playing")
-     } catch
-            let error as NSError {
-                print("audioPlayer error: \(error.localizedDescription)")
-            }
 
     }
     
     @IBAction func fastPlay(_ sender: UIButton) {
-        do {
-            try audioPlayer = AVAudioPlayer(contentsOf: (receivedAudio)!)
-            audioPlayer!.delegate = self
-            audioPlayer!.prepareToPlay()
+        rateSetup()
+        
             audioPlayer!.enableRate = true
             audioPlayer!.rate = 2
             audioPlayer!.play()
             print("playing")
-        } catch
-            let error as NSError {
-                print("audioPlayer error: \(error.localizedDescription)")
         }
-
-        
-    }
     
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -88,7 +93,7 @@ class PitchViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecor
         audioPlayerNode.play()
         }
 
-    @IBAction func lowPlay(_ sender: Any) {
+    @IBAction func lowPlay(_ sender: UIButton) {
         
         let audioPlayerNode = AVAudioPlayerNode()
         
@@ -147,6 +152,7 @@ class PitchViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecor
     
     @IBAction func robotPlay(_ sender: UIButton) {
         
+        // this works to edit both rate and pitch
         
         let audioPlayerNode = AVAudioPlayerNode()
         
@@ -177,7 +183,7 @@ class PitchViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecor
 
     @IBAction func stopAudio(_ sender: UIButton) {
         
-        audioPlayer.stop()
+        audioPlayer?.stop()
         engine.stop()
         
     }
